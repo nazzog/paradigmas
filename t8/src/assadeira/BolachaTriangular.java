@@ -12,9 +12,10 @@ public class BolachaTriangular extends Assadeira{
 		this.base = gerador.nextFloat()*7+3; //valores entre 3-10cm.
 		this.altura = gerador.nextFloat()*7+3;
 		area = (base*altura) / 2; //area entre 4,5 - 50cm².
+		tipo = "Triangular";
 	}
 	
 	public String toString(){
-		return "Tamanho da bolacha triangular: "+String.format("%.2f", area)+"cm².";
+		return "Tamanho da bolacha triangular: "+String.format("%.2f", area)+"cm²."+ponto;
 	}
 }
