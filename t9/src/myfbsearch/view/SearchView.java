@@ -21,12 +21,19 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
+import myfbsearch.controller.SearchController;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class SearchView extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableUser;
 	private JTextField textFieldToken;
 	private JTextField textFieldSearch;
+	
+	private SearchController controller;
 
 	/**
 	 * Create the frame.
@@ -61,7 +68,8 @@ public class SearchView extends JFrame {
 		contentPane.add(panelSearch, gbc_panelSearch);
 		
 		textFieldSearch = new JTextField();
-		textFieldSearch.setBounds(111, 5, 197, 19);
+		
+		textFieldSearch.setBounds(111, 37, 185, 19);
 		panelSearch.add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
@@ -70,16 +78,22 @@ public class SearchView extends JFrame {
 		panelSearch.add(labelToken);
 		
 		textFieldToken = new JTextField();
-		textFieldToken.setBounds(111, 36, 197, 21);
+		
+		textFieldToken.setBounds(111, 4, 185, 21);
 		panelSearch.add(textFieldToken);
 		textFieldToken.setColumns(10);
 		
 		JButton btnSearch = new JButton("Search");
-		btnSearch.setBounds(118, 81, 95, 21);
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.search();
+			}
+		});
+		btnSearch.setBounds(111, 78, 88, 19);
 		panelSearch.add(btnSearch);
 		
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(227, 82, 81, 19);
+		btnCancel.setBounds(227, 78, 81, 19);
 		panelSearch.add(btnCancel);
 		
 		JLabel labelSearch = new JLabel("Search User");

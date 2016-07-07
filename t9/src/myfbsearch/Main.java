@@ -1,6 +1,8 @@
 package myfbsearch;
 
-import java.awt.EventQueue;
+//import java.awt.EventQueue;
+
+import javax.swing.SwingUtilities;
 
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
@@ -9,35 +11,33 @@ import com.restfb.Parameter;
 import com.restfb.json.JsonObject;
 import com.restfb.types.User;
 
-import myfbsearch.view.SearchView;
+import myfbsearch.view.SearchViewTest;
 
 public class Main {
-
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SearchView frame = new SearchView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+		/*
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+		    public void run() {
+				SearchViewTest tela = new SearchViewTest();
+		        tela.setVisible(true);
+		    }
 		});
-	}
-}
+		*/
 		
 		
-		/*String acessToken = "EAACEdEose0cBAFCQZCZCef42nXx0VctOI3FebQCTqjWicjijPdwsqVkyIZCHBV3G8cxmfB4K9302sGF92Mi9AsWsBp4KZCwwKf62pLByYmaVjYpUExsZByNRVdGDIvoZCSp5pAcdL2DHvxeugcWNTd2plf9EOZAxiIZCGorsalvdhQZDZD";
+		String acessToken = "EAACEdEose0cBAHATuWgUyNVZAd04ErpMjaH1B7C9K1WvqZB1VsVnVHgwZCc00EVijbA8J26hmZBqgY8nBS3h2U2EkaZCjv5Wf8d8XW2iKZBDvUWZCrqbRVZBNZBZAiD55ctDCB6qNwYjZCjukkMFsLcGsajDwdREZAXx8QH2oq9GAiWbeS97P2pOYZBgU4t1iT9fYoKRhgZAZBqvHWzozqu9xgDALzV";
 		FacebookClient fbClient = new DefaultFacebookClient(acessToken);
 		
 		User me = fbClient.fetchObject("me", User.class);
 		
 		Connection<User> publicSearch = fbClient.fetchConnection("search", User.class, Parameter.with("q", 
 				"Mohnschmidt"), Parameter.with("type", "user"));
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < 50; i++){
 			System.out.println(publicSearch.getData().get(i).getName());
-			
-			JsonObject picture = fbClient.fetchObject("me/picture", JsonObject.class, Parameter.with("redirect", "false"));
-			System.out.println(picture);
-			*/		
+		}
+		
+		JsonObject picture = fbClient.fetchObject("me/picture", JsonObject.class, Parameter.with("redirect", "false"));
+		System.out.println(picture);
+	}
+}	
