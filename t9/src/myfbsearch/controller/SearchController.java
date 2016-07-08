@@ -4,6 +4,8 @@ import myfbsearch.model.SearchModel;
 import myfbsearch.model.TableModelUser;
 import myfbsearch.view.SearchView;
 
+import javax.swing.JOptionPane;
+
 public class SearchController {
 	
 	private SearchView view;
@@ -18,10 +20,11 @@ public class SearchController {
 
 	public void search() {
 		// TODO Auto-generated method stub
-		System.out.println("teste");
+		
 	}
 	
 	public void save(){
+		// TODO Auto-generated method stub
 		
 	}
 
