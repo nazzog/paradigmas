@@ -72,6 +72,13 @@ selNegativos2 (h:t)
 retornaIntervalo :: [Float] -> [Float]
 retornaIntervalo lis = filter(\n -> n >= 1 && n <= 100) lis
 
+retornaIntervalo2 :: [Float] -> [Float]
+retornaIntervalo2 [] = []
+retornaIntervalo2 (h:t)
+	| h >=1 && h <= 100 = h : retornaIntervalo2 t
+	| otherwise = retornaIntervalo2 t
+
+
 
 -- 8) Escreva uma função que, dada uma lista de idades de pessoas no ano atual,
 -- retorne uma lista somente com as idades de quem nasceu depois de 1970.
@@ -79,12 +86,22 @@ retornaIntervalo lis = filter(\n -> n >= 1 && n <= 100) lis
 verificaIdade :: [Int] -> [Int]
 verificaIdade lis = filter(\x -> 2016-x > 1970) lis
 
+verificaIdade2 :: [Int] -> [Int]
+verificaIdade2 [] = []
+verificaIdade2 (h:t)
+	| 2016-h > 1970 = h : verificaIdade2 t
+	| otherwise = verificaIdade2 t
 
 -- 9) Escreva uma função que receba uma lista de números e retorne somente aqueles
 -- que forem pares.
 retornaPar :: [Int] -> [Int]
 retornaPar lis = filter(\x -> mod x 2 == 0) lis
 
+retornaPar2 :: [Int] -> [Int]
+retornaPar2 [] = []
+retornaPar2 (h:t)
+	| mod h 2 == 0 = h : retornaPar2 t
+	| otherwise = retornaPar2 t
 
 -- 10) Crie uma função charFound :: Char -> String -> Bool que verifique se o
 -- caracter (primeiro argumento) está contido na string (segundo argumento).
@@ -98,6 +115,12 @@ charFound char str
 	|str == [] = False
 	|char == head str = True
 	|char /= head str = charFound char (tail str)
+
+charFound2 :: Char -> String -> Bool
+charFound2 _ [] = False
+charFound2 c (h:t)
+	| c == h = True
+	| c /= h = charFound2 c t
 
 
 -- 11) A função takeWhile :: (a -> Bool) -> [a] -> [a] é uma função de alta ordem.
@@ -113,3 +136,11 @@ charFound char str
 
 -- 12) Crie uma função que receba uma lista de nomes e retorne outra lista com
 -- somente aqueles nomes que terminarem com a letra 'a'.
+retornaLast :: [String] -> [String]
+retornaLast lis = filter(\c -> last c == 'a') lis
+
+retornaLast2 :: [String] -> [String]
+retornaLast2 [] = []
+retornaLast2 (h:t)
+	| last h == 'a' = h : retornaLast2 t
+	| otherwise = retornaLast2 t
