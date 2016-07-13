@@ -4,6 +4,9 @@ elevaQuadrado :: [Int] -> [Int]
 elevaQuadrado [] = []
 elevaQuadrado lis = (head lis)^2 : elevaQuadrado (tail lis)
 
+elevaQuadrado2 :: [Int] -> [Int]
+elevaQuadrado2 lis = map(^2) lis
+
 
 -- 2) Escreva uma função recursiva que receba uma lista de nomes e adicione
 -- a string "Sr. " no início de cada nome.
@@ -11,14 +14,20 @@ addSr :: [String] -> [String]
 addSr [] = []
 addSr (h:t) = ("Sr. "++)h : addSr t
 
+addSr2 :: [String] -> [String]
+addSr2 lis = map("Sr. "++) lis
+
 
 -- 3) Crie uma função recursiva que receba uma string e retorne o número de
 -- espaços nela contidos.
 numSpaco :: String -> Int
 numSpaco [] = 0
-numSpaco	(h:t)
+numSpaco (h:t)
 	| h == ' ' = 1 + numSpaco t
 	| otherwise = numSpaco t
+
+numSpaco2 :: String -> Int
+numSpaco2 lis = length(filter (== ' ') lis)
 
 
 -- 4) Escreva uma função recursiva que, dada uma lista de números, calcule
@@ -27,6 +36,8 @@ calculaN :: [Float] -> [Float]
 calculaN [] = []
 calculaN (h:t) = (\n -> (3*n^2) + (2/n) + 1) h : calculaN t
 
+calculaN2 :: [Float] -> [Float]
+calculaN2 lis = map(\n -> (3*n^2) + (2/n) + 1) lis
 
 -- 5) Escreva uma função recursiva que, dada uma lista de números, selecione
 -- somente os que forem negativos.
@@ -36,6 +47,8 @@ selectNeg (h:t)
 	| h < 0 = h : selectNeg t
 	| otherwise = selectNeg t
 
+selectNeg2 :: [Float] -> [Float]
+selectNeg2 lis = filter (< 0) lis
 
 -- 6) Defina uma função não-recursiva que receba uma string e retire suas vogais,
 -- conforme os exemplos abaixo.
@@ -49,6 +62,11 @@ semVogais :: String -> String
 semVogais "" = ""
 semVogais str = filter(\n -> n /= 'a' && n /= 'e' && n /= 'i' && n /= 'o' && n /= 'u') str
 
+semVogais2 :: String -> String
+semVogais2 [] = []
+semVogais2 (h:t)
+	| h /= 'a' && h /= 'e' && h /= 'i' && h /= 'o' && h /= 'u' = h : semVogais2 t
+	| otherwise = semVogais2 t
 
 -- 7) Expresse uma solução recursiva para o exercício anterior.
 semVogaisRecursiva :: String -> String
@@ -65,7 +83,8 @@ semVogaisRecursiva (h:t)
 --		"--- ------ -- ---"
 --		> codifica ""
 --		""
-
+codifica :: String -> String
+codifica str = map(\x -> if x /= ' ' then '-' else ' ') str
 
 
 -- 9) Defina uma função recursiva que resolva o mesmo problema do exercício anterior.
@@ -96,6 +115,7 @@ charFound char str
 --		[(2.1,2.2),(3.1,8.0),(4.0,5.1)]
 translate :: [(Float, Float)] -> [(Float, Float)]
 translate [] = []
+translate (hx:tx) = ((fst hx + 2), (snd hx + 2)) : translate tx
 
 
 -- 12) Defina uma função recursiva que receba 2 listas e retorne uma lista contendo
