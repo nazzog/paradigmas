@@ -1,3 +1,7 @@
+dec2bin :: Int -> [Int]
+dec2bin 0 = []
+dec2bin x = reverse (mod x 2 : dec2bin(div x 2))
+
 -- 1) Defina uma função recursiva que receba uma lista de números inteiros e
 -- produza uma nova lista com cada número elevado ao quadrado.
 elevaQuadrado :: [Int] -> [Int]

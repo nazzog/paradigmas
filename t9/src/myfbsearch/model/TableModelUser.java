@@ -10,7 +10,8 @@ public class TableModelUser extends AbstractTableModel {
 	private ArrayList<User> users;
 	
 	public TableModelUser(){
-		
+		users = new ArrayList<User>();
+		users.add(new User(1, "Foto", 44, "Tiago"));
 	}
 	
 	public void save(){

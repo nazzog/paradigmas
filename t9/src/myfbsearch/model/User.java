@@ -9,7 +9,7 @@ public class User {
 	public User(){
 	}
 	
-	public User(int id, String name, String picture, int pos){
+	public User(int pos, String picture, int id, String name){
 		this.id = id;
 		this.name = name;
 		this.picture = picture;

@@ -1,3 +1,15 @@
+/* Aquecimento */
+/* Copie o código Prolog abaixo para um arquivo .pl. Este código define um
+   predicado recursivo repete, que é verdadeiro se a lista L contém N repetições
+   do símbolo C.
+*/
+repete(0, _, []).
+repete(N, C, L) :-
+  N > 0,
+  L = [C | T],
+  N1 is N - 1,
+  repete(N1, C, T).
+
 /* 1) Defina um predicado zeroInit(L) que é verdadeiro se L for uma lista que
    inicia com o número 0 (zero). Exemplo de uso:
     ?- zeroInit([9,6,7]).

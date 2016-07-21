@@ -26,12 +26,15 @@ import myfbsearch.model.SearchModel;
 import myfbsearch.model.TableModelUser;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
 
 public class SearchView extends JFrame {
 
@@ -48,6 +51,11 @@ public class SearchView extends JFrame {
 	 * Create the frame.
 	 */
 	public SearchView() {
+		tableModelUser = new TableModelUser();
+		searchModel = new SearchModel();
+		tableUser.setModel(tableModelUser);
+		controller = new SearchController(this, searchModel, tableModelUser);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 330, 449);
 		contentPane = new JPanel();
@@ -82,7 +90,23 @@ public class SearchView extends JFrame {
 		scrollPaneUser.setViewportBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		tableUser = new JTable();
+		tableUser.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tableUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableUserMouseClicked(evt);
+            }
+        });
+		
+		tableUser.setShowVerticalLines(false);
+		tableUser.setShowHorizontalLines(false);
+		tableUser.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+			}
+		));
 		scrollPaneUser.setRowHeaderView(tableUser);
+		//scrollPaneUser.setViewportView(tableUser);
 		
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
@@ -139,6 +163,15 @@ public class SearchView extends JFrame {
 		
 		
 		contentPane.setLayout(gl_contentPane);
+		
+	}
+	
+	public JTable getTableUser() {
+        return tableUser;
+    }
+
+	protected void tableUserMouseClicked(MouseEvent evt) {
+		// TODO Auto-generated method stub
 		
 	}
 

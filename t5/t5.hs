@@ -1,6 +1,9 @@
--- 1) Escreva uma função addSuffix :: String ­-> [String] -­> [String] usando list comprehension, para adicionar um dado sufixo às strings contidas numa lista. Exemplo:
+-- 1) Escreva uma função addSuffix :: String ­-> [String] -­> [String] usando list comprehension,
+-- para adicionar um dado sufixo às strings contidas numa lista. Exemplo:
 -- > addSuffix "@inf.ufsm.br" ["fulano","beltrano"]
 -- ["fulano@inf.ufsm.br","beltrano@inf.ufsm.br]
+addSuffix :: String -> [String] -> [String]
+addSuffix str lis = [y:x | y <- (head lis), x <- str] : addSuffix (tail lis)
 
 
 -- 2) Escreva uma função countShorts :: [String] ­-> Int, que receba uma lista de palavras e retorne a quantidade de palavras dessa lista que possuem menos de 5 caracteres. Use recursão.
