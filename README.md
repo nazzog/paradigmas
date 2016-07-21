@@ -1,2 +1,2 @@
 # paradigmas
-Repositório para entrega de trabalhos
+Repositório para entrega de trabalhos!
