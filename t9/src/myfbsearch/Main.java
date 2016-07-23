@@ -12,22 +12,32 @@ import com.restfb.json.JsonObject;
 import com.restfb.types.User;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import myfbsearch.view.SearchView;
+import myfbsearch.controller.SearchController;
+import myfbsearch.model.UserModel;
 
 
 public class Main extends Application{
 	
 	private Stage primaryStage; //-> Container principal
 	private BorderPane rootLayout;
+	
+	private ObservableList<UserModel> userData = FXCollections.observableArrayList();
 
 	//Método costrutor
 	public Main(){
-		
+		userData.add(new UserModel(1, "Tiago", 1, "uehah"));
+		userData.add(new UserModel(2, "Pedro", 2, "2ih4b"));
+	}
+	
+	public ObservableList<UserModel> getUserData(){
+		return userData;
 	}
 		
 	@Override
@@ -75,6 +85,10 @@ public class Main extends Application{
 			
 			//Define o searchView dentro do rootLayout.
 			rootLayout.setCenter(searchView);
+			
+			SearchController controller = loader.getController();
+			controller.setMain(this);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
