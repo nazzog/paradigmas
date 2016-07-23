@@ -67,15 +67,9 @@ public class SearchController {
 	@FXML
 	public void handleSearch(){
 		String acessToken = tokenField.getText(); //recebe a token digitada na tokenField.
-		FacebookClient fbClient = new DefaultFacebookClient(acessToken);
 		String name = nameField.getText(); //nome passado no campo nameField.
-		
-		Connection<User> publicSearch = fbClient.fetchConnection("search", User.class, Parameter.with("q", 
-				name), Parameter.with("type", "user"));
-		
-		for(int i = 0; i < 50; i++){
-			System.out.println(publicSearch.getData().get(i).getName());
-		}
+		SearchModel sm = new SearchModel();
+		sm.search(acessToken, name);
 	}
 	
 	@FXML

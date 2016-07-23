@@ -1,43 +1,29 @@
 package myfbsearch.model;
 
+import com.restfb.Connection;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.types.User;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class SearchModel {
 	
-	private ObservableList<UserModel> userData = FXCollections.observableArrayList();
-	
-	private String token;
-	private String name;
 	
 	public SearchModel(){
-		userData.add(new UserModel(1, "Tiago", 1, "uehah"));
-		userData.add(new UserModel(2, "Pedro", 2, "2ih4b"));
+
 	}
 	
-	public SearchModel(String token, String name){
-		this.token = token;
-		this.name = name;
-	}
-	
-	public ObservableList<UserModel> getUserData(){
-		return userData;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void search(String token, String name){
+		FacebookClient fbClient = new DefaultFacebookClient(token);		
+		Connection<User> publicSearch = fbClient.fetchConnection("search", User.class, Parameter.with("q", 
+				name), Parameter.with("type", "user"));
+		
+		for(int i = 0; i < 50; i++){
+			System.out.println(publicSearch.getData().get(i).getName());
+		}
 	}
 	
 }

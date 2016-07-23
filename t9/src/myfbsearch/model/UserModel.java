@@ -81,8 +81,4 @@ public class UserModel {
 	public final void setPicture(final String picture) {
 		this.pictureProperty().set(picture);
 	}
-	
-	
-	
-
 }
