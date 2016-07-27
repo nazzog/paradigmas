@@ -7,6 +7,7 @@ import com.restfb.Parameter;
 import com.restfb.json.JsonObject;
 import com.restfb.types.User;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -25,13 +26,13 @@ public class SearchController {
 	private TableView<UserModel> userTable;
 
 	@FXML
-	private TableColumn<UserModel, Integer> idColumn;
+	private TableColumn<UserModel, String> idColumn;
 	
 	@FXML
 	private TableColumn<UserModel, String> nameColumn;
 	
 	@FXML
-	private TableColumn<UserModel, Integer> posColumn;
+	private TableColumn<UserModel, String> posColumn;
 	
 	@FXML
 	private TableColumn<UserModel, String> pictureColumn;
@@ -56,11 +57,14 @@ public class SearchController {
 	
 	@FXML
 	public void initialize(){
-		//posColumn.setCellValueFactory(cellData -> cellData.getValue().posProperty());
+		posColumn.setCellValueFactory(cellData -> cellData.getValue().posProperty());
 		pictureColumn.setCellValueFactory(cellData -> cellData.getValue().pictureProperty());
-		//idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
+		idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
 		nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
 		
+		//SearchModel data = new SearchModel();
+		//ObservableList<UserModel> tableItens = data.getUserData();
+		//userTable.setItems(tableItens);
 		
 	}
 	
@@ -68,8 +72,12 @@ public class SearchController {
 	public void handleSearch(){
 		String acessToken = tokenField.getText(); //recebe a token digitada na tokenField.
 		String name = nameField.getText(); //nome passado no campo nameField.
-		SearchModel sm = new SearchModel();
-		sm.search(acessToken, name);
+		SearchModel data = new SearchModel();
+		ObservableList<UserModel> tableItens = data.search(acessToken, name);
+		userTable.setItems(tableItens);
+		
+		//SearchModel sm = new SearchModel();
+		//sm.search(acessToken, name);
 	}
 	
 	@FXML
@@ -81,12 +89,6 @@ public class SearchController {
         alert.setContentText("Teste Bem Sucedido");
 
         alert.showAndWait();
-	}
-	
-	public void setMain(Main main){
-		this.main = main;
-		
-		userTable.setItems(main.getUserData());
 	}
 	
 }

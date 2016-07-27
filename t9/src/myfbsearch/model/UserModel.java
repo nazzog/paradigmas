@@ -11,29 +11,29 @@ import javafx.beans.property.StringProperty;
 
 public class UserModel {
 	
-	private final IntegerProperty id;
+	private final StringProperty id;
 	private final StringProperty name;
-	private final IntegerProperty pos;
+	private final StringProperty pos;
 	private final StringProperty picture;
 	
-	public UserModel(int id, String name, int pos, String picture){
-		this.id = new SimpleIntegerProperty(id);
+	public UserModel(String id, String name, String pos, String picture){
+		this.id = new SimpleStringProperty(id);
 		this.name = new SimpleStringProperty(name);
-		this.pos = new SimpleIntegerProperty(pos);
+		this.pos = new SimpleStringProperty(pos);
 		this.picture = new SimpleStringProperty(picture);
 	}
 
-	public final IntegerProperty idProperty() {
+	public final StringProperty idProperty() {
 		return this.id;
 	}
 	
 
-	public final int getId() {
+	public final String getId() {
 		return this.idProperty().get();
 	}
 	
 
-	public final void setId(final int id) {
+	public final void setId(final String id) {
 		this.idProperty().set(id);
 	}
 	
@@ -53,17 +53,17 @@ public class UserModel {
 	}
 	
 
-	public final IntegerProperty posProperty() {
+	public final StringProperty posProperty() {
 		return this.pos;
 	}
 	
 
-	public final int getPos() {
+	public final String getPos() {
 		return this.posProperty().get();
 	}
 	
 
-	public final void setPos(final int pos) {
+	public final void setPos(final String pos) {
 		this.posProperty().set(pos);
 	}
 	
